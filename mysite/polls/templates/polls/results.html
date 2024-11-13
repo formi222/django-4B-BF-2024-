@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polls</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'polls/styles.css' %}">
+
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul><br>
+
+<section>
+<a href="{% url 'polls:detail' question.id %}" style="text-decoration: none;">Zagłosuj ponownie</a>
+</section></br>
+
+
+<section>
+<a href="{% url 'polls:index' %}" style="text-decoration: none;">Wróć do listy pytań</a>
+</section>
